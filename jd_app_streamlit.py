@@ -4,7 +4,7 @@ import docx
 import os
 
 # Cấu hình Gemini API
-api_key = os.getenv("GEMINI_API_KEY")
+api_key = "AIzaSyALIFJZAmvuu5G5QVOMjp0bXb7sn-Hhfh4"
 genai.configure(api_key=api_key)
 
 # Hàm đọc nội dung từ file .docx
