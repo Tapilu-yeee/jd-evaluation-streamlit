@@ -24,7 +24,7 @@ model = genai.GenerativeModel("gemini-pro")
 # Giao diện Streamlit
 st.set_page_config(page_title="Đánh giá giá trị công việc (PwC)", layout="wide")
 st.title("📋 Đánh giá mô tả công việc theo 12 yếu tố PwC")
-st.markdown("Tải lên mô tả công việc (.docx) để hệ thống AI đánh giá.")
+st.markdown("Tải lên mô tả công việc (.docx) để hệ thống thực hiện đánh giá.")
 
 # Nhập tên vị trí
 job_title = st.text_input("🔤 Nhập tên vị trí công việc:")
@@ -36,7 +36,8 @@ if uploaded_file and job_title:
     with st.spinner("🧠 Đang phân tích và đánh giá..."):
         # jd_content = read_docx(uploaded_file)
         with open(uploaded_file, "r", encoding="utf-8") as f:
-            jd_content = f.read()
+        stringio = io.StringIO(uploaded_file.getvalue().decode("utf-8"))
+        jd_content = stringio.read()
         full_prompt = load_pwc_prompt() + f"\n\nĐây là JD cho vị trí: {job_title}\n\n{jd_content}"
         response = model.generate_content(full_prompt)
         result = response.text
@@ -78,5 +79,4 @@ if hasattr(st.session_state, "jd_history") and len(st.session_state.jd_history) 
 
 else:
     st.info("Chưa có JD nào được lưu trước đó để so sánh.")
-
 
