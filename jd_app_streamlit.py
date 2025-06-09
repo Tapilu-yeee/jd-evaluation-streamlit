@@ -35,7 +35,7 @@ uploaded_file = st.file_uploader("📎 Tải lên JD định dạng .docx", type
 if uploaded_file and job_title:
     with st.spinner("🧠 Đang phân tích và đánh giá..."):
         # jd_content = read_docx(uploaded_file)
-        with open(uploaded_file, "r", encoding="utf-8") as f:
+       
         stringio = io.StringIO(uploaded_file.getvalue().decode("utf-8"))
         jd_content = stringio.read()
         full_prompt = load_pwc_prompt() + f"\n\nĐây là JD cho vị trí: {job_title}\n\n{jd_content}"
