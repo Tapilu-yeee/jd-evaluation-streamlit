@@ -1,11 +1,14 @@
 import streamlit as st
 import google.generativeai as genai
 import io
-import os
 
 api_key = "AIzaSyA9fHyFbkBWUA6F795KpqnStPpd_abo1AA"
 genai.configure(api_key=api_key)
+import docx
 
+def read_docx(file):
+    doc = docx.Document(file)
+    return "\n".join([para.text for para in doc.paragraphs if para.text.strip() != ""])
 
 @st.cache_data
 def load_pwc_prompt():
@@ -24,9 +27,7 @@ uploaded_file = st.file_uploader("📎 Tải lên file mô tả công việc (.d
 
 if uploaded_file and job_title:
     with st.spinner("🔍 Đang phân tích và đánh giá..."):
-        # jd_content = read_docx(uploaded_file)
-        stringio = io.StringIO(uploaded_file.getvalue().decode("utf-8"))
-        jd_content = stringio.read()
+        jd_content = read_docx(uploaded_file)
         prompt = load_pwc_prompt() + f"\n\nĐây là mô tả công việc của vị trí: {job_title}\n\n{jd_content}"
         response = model.generate_content(prompt)
         result = response.text
