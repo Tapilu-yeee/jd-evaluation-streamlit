@@ -19,7 +19,7 @@ model = genai.GenerativeModel("gemini-2.0-flash")
 
 st.set_page_config(page_title="Đánh giá công việc PwC", layout="wide")
 st.title("📋 Đánh giá mô tả công việc theo 12 yếu tố PwC")
-st.markdown("Hãy tải lên file mô tả công việc (.docx) để được hệ thống AI đánh giá tự động.")
+st.markdown("Hãy tải lên file mô tả công việc để được hệ thống đánh giá tự động.")
 
 job_title = st.text_input("🔤 Nhập tên vị trí công việc:")
 
