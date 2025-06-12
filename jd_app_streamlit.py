@@ -13,14 +13,14 @@ REFERENCE_JD_EVALS = load_reference_data()
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-def find_similar_jd(new_jd_text, reference_evals, top_k=5):
+def find_similar_id(new_jd_text, reference_evals, top_k=5):
     corpus = [e["summary_note"] for e in reference_evals] + [new_jd_text]
     vec = TfidfVectorizer().fit_transform(corpus)
     sim_matrix = cosine_similarity(vec[-1], vec[:-1])
     top_indices = sim_matrix[0].argsort()[-top_k:][::-1]
     return [reference_evals[i] for i in top_indices]
 
-similar_cases = find_similar_jd(jd_text, REFERENCE_JD_EVALS)
+similar_cases = find_similar_id(jd_text, REFERENCE_JD_EVALS)
 
 reference_context = "\n".join([
     f"{case['job_title']}: {json.dumps(case['factors'])}"
