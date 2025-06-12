@@ -1,0 +1,51 @@
+[
+  {
+    "job_title": "Client Service Supervisor",
+    "factors": {
+      "1. Trình độ học vấn": "H1",
+      "2. Kinh nghiệm": "G3",
+      "3. Mức độ phức tạp công việc": "D1",
+      "4. Phạm vi công việc": "C",
+      "5. Giải quyết vấn đề": "D1",
+      "6. Mức độ cần được chỉ dẫn/giám sát": "D3",
+      "7. Mức độ liên lạc": "D12",
+      "8. Trách nhiệm giám sát/quản lý": "E23",
+      "9. Ảnh hưởng của các quyết định": "B1",
+      "10. Quyền hạn": "A1",
+      "11. Môi trường làm việc": "NA",
+      "12. Yêu cầu thể chất": "NA"
+    },
+   {
+    "job_title": "Client Service Team Leader",
+    "factors": {
+      "1. Trình độ học vấn": "H1",
+      "2. Kinh nghiệm": "G2",
+      "3. Mức độ phức tạp công việc": "C3",
+      "4. Phạm vi công việc": "C",
+      "5. Giải quyết vấn đề": "C3",
+      "6. Mức độ cần được chỉ dẫn/giám sát": "D2",
+      "7. Mức độ liên lạc": "D12",
+      "8. Trách nhiệm giám sát/quản lý": "E22",
+      "9. Ảnh hưởng của các quyết định": "A1",
+      "10. Quyền hạn": "A1",
+      "11. Môi trường làm việc": "NA",
+      "12. Yêu cầu thể chất": "NA"
+ },
+{
+    "job_title": "Client Service Specialist",
+    "factors": {
+      "1. Trình độ học vấn": "G1",
+      "2. Kinh nghiệm": "F",
+      "3. Mức độ phức tạp công việc": "B3",
+      "4. Phạm vi công việc": "B",
+      "5. Giải quyết vấn đề": "B3",
+      "6. Mức độ cần được chỉ dẫn/giám sát": "C2",
+      "7. Mức độ liên lạc": "B2",
+      "8. Trách nhiệm giám sát/quản lý": "B2",
+      "9. Ảnh hưởng của các quyết định": "A1",
+      "10. Quyền hạn": "A0",
+      "11. Môi trường làm việc": "NA",
+      "12. Yêu cầu thể chất": "NA"
+
+  }
+]
