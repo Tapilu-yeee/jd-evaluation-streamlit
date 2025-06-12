@@ -1,6 +1,47 @@
 import streamlit as st
 import google.generativeai as genai
 import io
+import json
+
+@st.cache_data
+def load_reference_data():
+    with open("historical_evaluations.json", "r", encoding="utf-8") as f:
+        return json.load(f)
+
+REFERENCE_JD_EVALS = load_reference_data()
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+def find_similar_jd(new_jd_text, reference_evals, top_k=5):
+    corpus = [e["summary_note"] for e in reference_evals] + [new_jd_text]
+    vec = TfidfVectorizer().fit_transform(corpus)
+    sim_matrix = cosine_similarity(vec[-1], vec[:-1])
+    top_indices = sim_matrix[0].argsort()[-top_k:][::-1]
+    return [reference_evals[i] for i in top_indices]
+
+similar_cases = find_similar_jd(jd_text, REFERENCE_JD_EVALS)
+
+reference_context = "\n".join([
+    f"{case['job_title']}: {json.dumps(case['factors'])}"
+    for case in similar_cases
+])
+
+prompt = f"""
+{PWC_PROMPT}
+
+Dưới đây là các mẫu JD đã được đánh giá theo phương pháp PwC:
+
+{reference_context}
+
+Hãy đánh giá JD mới theo chuẩn PwC (12 yếu tố, xếp loại từ A → J).
+Trả kết quả ở dạng bảng.
+---
+
+JD mới:
+{jd_text}
+"""
+
 
 api_key = "AIzaSyA9fHyFbkBWUA6F795KpqnStPpd_abo1AA"
 genai.configure(api_key=api_key)
