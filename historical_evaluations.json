@@ -14,8 +14,9 @@
       "10. Quyền hạn": "A1",
       "11. Môi trường làm việc": "NA",
       "12. Yêu cầu thể chất": "NA"
-    },
-   {
+    }
+  },
+  {
     "job_title": "Client Service Team Leader",
     "factors": {
       "1. Trình độ học vấn": "H1",
@@ -30,8 +31,9 @@
       "10. Quyền hạn": "A1",
       "11. Môi trường làm việc": "NA",
       "12. Yêu cầu thể chất": "NA"
- },
-{
+    }
+  },
+  {
     "job_title": "Client Service Specialist",
     "factors": {
       "1. Trình độ học vấn": "G1",
@@ -46,6 +48,6 @@
       "10. Quyền hạn": "A0",
       "11. Môi trường làm việc": "NA",
       "12. Yêu cầu thể chất": "NA"
-
+    }
   }
 ]
