@@ -1,3 +1,4 @@
 streamlit
 python-docx
 google-generativeai
+scikit-learn
