@@ -14,7 +14,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 def find_similar_jd(new_jd_text, reference_evals, top_k=5):
-    corpus = [e["summary_note"] for e in reference_evals] + [new_jd_text]
+    corpus = [e["job_title"] for e in reference_evals] + [new_jd_text]
     vec = TfidfVectorizer().fit_transform(corpus)
     sim_matrix = cosine_similarity(vec[-1], vec[:-1])
     top_indices = sim_matrix[0].argsort()[-top_k:][::-1]
