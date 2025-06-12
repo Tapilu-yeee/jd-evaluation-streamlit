@@ -20,34 +20,6 @@ def find_similar_jd(new_jd_text, reference_evals, top_k=5):
     top_indices = sim_matrix[0].argsort()[-top_k:][::-1]
     return [reference_evals[i] for i in top_indices]
 
-# Gọi AI để tìm các JD tương tự
-similar_cases = find_similar_jd(jd_content, REFERENCE_JD_EVALS)
-reference_context = "\n".join([
-    f"{case['job_title']}: {json.dumps(case['factors'])}"
-    for case in similar_cases
-])
-
-# Load prompt chuẩn
-pwc_prompt = load_pwc_prompt()
-
-# Kết hợp lại thành prompt đầy đủ
-prompt = f"""
-{pwc_prompt}
-
-Dưới đây là các mẫu JD đã được đánh giá theo phương pháp PwC:
-
-{reference_context}
-
-Hãy đánh giá JD mới theo chuẩn PwC (12 yếu tố, xếp loại từ A → J).
-Trả kết quả ở dạng bảng.
----
-
-JD mới:
-{jd_content}
-"""
-
-
-
 api_key = "AIzaSyA9fHyFbkBWUA6F795KpqnStPpd_abo1AA"
 genai.configure(api_key=api_key)
 import docx
@@ -106,3 +78,29 @@ if uploaded_file and job_title:
 
             compare_response = model.generate_content(compare_prompt)
             st.markdown(compare_response.text)
+
+# Gọi AI để tìm các JD tương tự
+similar_cases = find_similar_jd(jd_content, REFERENCE_JD_EVALS)
+reference_context = "\n".join([
+    f"{case['job_title']}: {json.dumps(case['factors'])}"
+    for case in similar_cases
+])
+
+# Load prompt chuẩn
+pwc_prompt = load_pwc_prompt()
+
+# Kết hợp lại thành prompt đầy đủ
+prompt = f"""
+{pwc_prompt}
+
+Dưới đây là các mẫu JD đã được đánh giá theo phương pháp PwC:
+
+{reference_context}
+
+Hãy đánh giá JD mới theo chuẩn PwC (12 yếu tố, xếp loại từ A → J).
+Trả kết quả ở dạng bảng.
+---
+
+JD mới:
+{jd_content}
+"""
