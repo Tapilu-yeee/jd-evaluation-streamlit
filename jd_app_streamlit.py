@@ -50,6 +50,31 @@ if uploaded_file and job_title:
         response = model.generate_content(prompt)
         result = response.text
 
+                similar_cases = find_similar_jd(jd_content, REFERENCE_JD_EVALS)
+        reference_context = "\n".join([
+            f"{case['job_title']}: {json.dumps(case['factors'])}"
+            for case in similar_cases
+        ])
+
+        pwc_prompt = load_pwc_prompt()
+
+        prompt = f"""
+{pwc_prompt}
+
+Dưới đây là các mẫu JD đã được đánh giá theo phương pháp PwC:
+
+{reference_context}
+
+Hãy đánh giá JD mới theo chuẩn PwC (12 yếu tố, xếp loại từ A → J).
+Trả kết quả ở dạng bảng.
+---
+
+JD mới:
+{jd_content}
+"""
+
+        response = model.generate_content(prompt)
+        result = response.text
         st.markdown("### ✅ Kết quả đánh giá theo 12 yếu tố PwC")
         st.markdown(result)
 
@@ -78,29 +103,3 @@ if uploaded_file and job_title:
 
             compare_response = model.generate_content(compare_prompt)
             st.markdown(compare_response.text)
-
-# Gọi AI để tìm các JD tương tự
-similar_cases = find_similar_jd(jd_content, REFERENCE_JD_EVALS)
-reference_context = "\n".join([
-    f"{case['job_title']}: {json.dumps(case['factors'])}"
-    for case in similar_cases
-])
-
-# Load prompt chuẩn
-pwc_prompt = load_pwc_prompt()
-
-# Kết hợp lại thành prompt đầy đủ
-prompt = f"""
-{pwc_prompt}
-
-Dưới đây là các mẫu JD đã được đánh giá theo phương pháp PwC:
-
-{reference_context}
-
-Hãy đánh giá JD mới theo chuẩn PwC (12 yếu tố, xếp loại từ A → J).
-Trả kết quả ở dạng bảng.
----
-
-JD mới:
-{jd_content}
-"""
