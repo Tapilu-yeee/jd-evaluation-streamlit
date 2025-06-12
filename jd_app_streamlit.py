@@ -20,15 +20,19 @@ def find_similar_jd(new_jd_text, reference_evals, top_k=5):
     top_indices = sim_matrix[0].argsort()[-top_k:][::-1]
     return [reference_evals[i] for i in top_indices]
 
-similar_cases = find_similar_jd(jd_text, REFERENCE_JD_EVALS)
-
+# Gọi AI để tìm các JD tương tự
+similar_cases = find_similar_jd(jd_content, REFERENCE_JD_EVALS)
 reference_context = "\n".join([
     f"{case['job_title']}: {json.dumps(case['factors'])}"
     for case in similar_cases
 ])
 
+# Load prompt chuẩn
+pwc_prompt = load_pwc_prompt()
+
+# Kết hợp lại thành prompt đầy đủ
 prompt = f"""
-{PWC_PROMPT}
+{pwc_prompt}
 
 Dưới đây là các mẫu JD đã được đánh giá theo phương pháp PwC:
 
@@ -39,8 +43,9 @@ Trả kết quả ở dạng bảng.
 ---
 
 JD mới:
-{jd_text}
+{jd_content}
 """
+
 
 
 api_key = "AIzaSyA9fHyFbkBWUA6F795KpqnStPpd_abo1AA"
