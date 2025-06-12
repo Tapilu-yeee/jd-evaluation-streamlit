@@ -50,7 +50,7 @@ if uploaded_file and job_title:
         response = model.generate_content(prompt)
         result = response.text
 
-                similar_cases = find_similar_jd(jd_content, REFERENCE_JD_EVALS)
+        similar_cases = find_similar_jd(jd_content, REFERENCE_JD_EVALS)
         reference_context = "\n".join([
             f"{case['job_title']}: {json.dumps(case['factors'])}"
             for case in similar_cases
