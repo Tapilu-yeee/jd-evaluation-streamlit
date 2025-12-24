@@ -17,7 +17,7 @@ st.markdown("Hãy tải lên file mô tả công việc để được hệ th�
 # =========================
 # API KEY (KHÔNG HARDCODE)
 # =========================
-api_key = st.secrets.get("AIzaSyALIFJZAmvuu5G5QVOMjp0bXb7sn-Hhfh4") or os.getenv("AIzaSyALIFJZAmvuu5G5QVOMjp0bXb7sn-Hhfh4")
+api_key = st.secrets.get("AIzaSyA8a7ZxHfZAls3B_giKA-FVGWCqkopl07U") or os.getenv("AIzaSyA8a7ZxHfZAls3B_giKA-FVGWCqkopl07U")
 if not api_key:
     st.error("❌ Thiếu GOOGLE_API_KEY. Vào Streamlit Cloud → Manage app → Settings → Secrets và thêm GOOGLE_API_KEY.")
     st.stop()
@@ -175,3 +175,4 @@ if "jd_history" in st.session_state and len(st.session_state.jd_history) > 1:
 
             compare_response = model.generate_content(compare_prompt)
             st.markdown(getattr(compare_response, "text", ""))
+
