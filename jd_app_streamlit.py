@@ -19,9 +19,7 @@ st.markdown("Hãy tải lên file mô tả công việc để được hệ th�
 # API KEY (FIX: KHÔNG HARDCODE)
 # =========================
 api_key = st.secrets.get("AIzaSyALIFJZAmvuu5G5QVOMjp0bXb7sn-Hhfh4") or os.getenv("AIzaSyALIFJZAmvuu5G5QVOMjp0bXb7sn-Hhfh4")
-if not api_key:
-    st.error("❌ Thiếu GOOGLE_API_KEY. Hãy vào Streamlit Cloud → Manage app → Settings → Secrets và thêm GOOGLE_API_KEY.")
-    st.stop()
+
 
 genai.configure(api_key=api_key)
 
@@ -191,3 +189,4 @@ JD mới:
         st.error(f"❌ Error: {e}")
     finally:
         st.session_state.is_running = False
+
