@@ -20,7 +20,7 @@ def find_similar_jd(new_jd_text, reference_evals, top_k=5):
     top_indices = sim_matrix[0].argsort()[-top_k:][::-1]
     return [reference_evals[i] for i in top_indices]
 
-api_key = "AIzaSyA9fHyFbkBWUA6F795KpqnStPpd_abo1AA"
+api_key = "AIzaSyALIFJZAmvuu5G5QVOMjp0bXb7sn-Hhfh4"
 genai.configure(api_key=api_key)
 import docx
 
@@ -103,3 +103,4 @@ JD mới:
 
             compare_response = model.generate_content(compare_prompt)
             st.markdown(compare_response.text)
+
