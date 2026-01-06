@@ -24,7 +24,7 @@ st.markdown("Hãy tải lên file mô tả công việc để được hệ th�
 api_key = "AIzaSyDOgZXvaZgeho4aLaeN1w58TYWrwIrco48"
 
 # Guard để tránh quên thay key
-if (not api_key) or (api_key.strip() == "") or ("AIzaSyDOgZXvaZgeho4aLaeN1w58TYWrwIrco48" in api_key):
+if (not api_key) or (api_key.strip() == "") or ("PASTE_YOUR_GOOGLE_API_KEY_HERE" in api_key):
     st.error("❌ Bạn chưa dán GOOGLE_API_KEY vào code. Hãy mở file và thay giá trị biến api_key.")
     st.stop()
 
