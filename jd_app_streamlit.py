@@ -18,13 +18,12 @@ st.markdown("Hãy tải lên file mô tả công việc để được hệ th�
 # API KEY (KHÔNG HARDCODE)
 # =========================
 # =========================
-# GOOGLE GEMINI API KEY
-# (Hardcoded theo yêu cầu — KHÔNG khuyến nghị)
+# GOOGLE GEMINI API KEY (HARDCODE theo yêu cầu)
 # =========================
 api_key = "AIzaSyDOgZXvaZgeho4aLaeN1w58TYWrwIrco48"
 
-# Guard để tránh quên thay key
-if (not api_key) or (api_key.strip() == "") or ("PASTE_YOUR_GOOGLE_API_KEY_HERE" in api_key):
+# Guard chỉ kiểm tra placeholder / rỗng (không tự chặn key thật)
+if (not api_key) or (api_key.strip() == "") or (api_key == "PASTE_YOUR_GOOGLE_API_KEY_HERE"):
     st.error("❌ Bạn chưa dán GOOGLE_API_KEY vào code. Hãy mở file và thay giá trị biến api_key.")
     st.stop()
 
