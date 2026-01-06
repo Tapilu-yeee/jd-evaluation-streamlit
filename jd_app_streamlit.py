@@ -17,13 +17,18 @@ st.markdown("Hãy tải lên file mô tả công việc để được hệ th�
 # =========================
 # API KEY (KHÔNG HARDCODE)
 # =========================
-api_key = st.secrets.get("AIzaSyA8a7ZxHfZAls3B_giKA-FVGWCqkopl07U") or os.getenv("AIzaSyA8a7ZxHfZAls3B_giKA-FVGWCqkopl07U")
-if not api_key:
-    st.error("❌ Thiếu GOOGLE_API_KEY. Vào Streamlit Cloud → Manage app → Settings → Secrets và thêm GOOGLE_API_KEY.")
+# =========================
+# GOOGLE GEMINI API KEY
+# (Hardcoded theo yêu cầu — KHÔNG khuyến nghị)
+# =========================
+api_key = "AIzaSyDOgZXvaZgeho4aLaeN1w58TYWrwIrco48"
+
+# Guard để tránh quên thay key
+if (not api_key) or (api_key.strip() == "") or ("AIzaSyDOgZXvaZgeho4aLaeN1w58TYWrwIrco48" in api_key):
+    st.error("❌ Bạn chưa dán GOOGLE_API_KEY vào code. Hãy mở file và thay giá trị biến api_key.")
     st.stop()
 
 genai.configure(api_key=api_key)
-
 # =========================
 # LOAD DATA / PROMPT (CACHE)
 # =========================
